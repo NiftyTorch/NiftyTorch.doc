@@ -3,7 +3,7 @@
 **NiftyTorch is a Python API for deploying deep neural networks for Neuroimaging research.**
 
 # Motivation
-The motivation behind the development of such a library is that there is no centralized tool for deployig 3D deep learning for neuroimaing. In addition, most of the existing tools require expert technical know-how in deep learning or programming, creating a barrier for entry. The goal is to provide a one stop API using which the users can perform classification tasks, Segmentation tasks and Image Generation tasks. The intended audience are the members of neuroimaging who would like to explore deep learning but have no background in coding.<br>
+The motivation behind the development of such a library is that there is no centralized tool for deployig 3D deep learning for neuroimaging. In addition, most of the existing tools require expert technical know-how in deep learning or programming, creating a barrier for entry. The goal is to provide a one stop API using which the users can perform classification tasks, Segmentation tasks and Image Generation tasks. The intended audience are the members of neuroimaging who would like to explore deep learning but have no background in coding.<br>
 
 For demos, see [this folder](https://github.com/NiftyTorch/NiftyTorch.v.0.1/tree/master/Demo).
 
