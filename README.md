@@ -85,7 +85,7 @@ If you encounter problem, check dependencies. NiftyTorch requires `torch==1.4.0`
 
 ## Resources
 
-- For **Tutorials and Demos**, please visit [Demo Repository](https://github.com/NiftyTorch/NiftyTorch.v.0.1/tree/master/Demo).  
+- For **Tutorials and Demos**, please visit [Demo Repository](https://github.com/NiftyTorch/NiftyTorch.v.0.1/tree/master/Demo). For **Documentation**, please visit [niftytorch.github.io](http://niftytorch.github.io/doc/).  
 - For **Announcements and News**, follow us on Twitter [@NiftyTorch](https://twitter.com/NiftyTorch).  
 - For Please submit your **questions** and **suggestions** via `niftytorch @ gmail.com`. We appreciate your constructive inputs. 
 
