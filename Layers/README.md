@@ -1,6 +1,6 @@
 # Layers
 
-The Layers module contains set of convolutional neural network units, which can used to create custom neural network architectures.
+The Layers module contains set of convolutional neural network units, which can be used to create custom neural network architectures.
 
 ## Modules
 
