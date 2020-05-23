@@ -4,7 +4,7 @@ The Attention can be used in the form of self-attention to identify important po
 
 ## Modules
 
-###Positional Attention 
+### Positional Attention 
 
 The code below demonstrates how to use the Positional Attention Module (PAM).<br>
 
@@ -35,7 +35,7 @@ print(attention.shape)
 
 The PAM returns two tensors where the first tensor is the output from positional attention and the second is the attention map.<br>
 
-###Channel Attention 
+### Channel Attention 
 
 The code below demonstrates how to use the Channel Attention Module (CAM).<br>
 

@@ -28,7 +28,7 @@ loss = weighted_cross_entropy(num_class = num_classes,weight = weight)
 print(loss(input,output))
 ```
 
-###Focal Loss
+### Focal Loss
 
 The idea behind `FocalLoss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example. 
 
@@ -56,7 +56,7 @@ loss = FocalLoss(num_class = num_classes,alpha = alpha,gamma = 2.0,balance_index
 print(loss(input,output))
 ```
 
-###Focal Dice Loss
+### Focal Dice Loss
 
 The idea behind `FocalDiceLoss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example by 
 
@@ -82,7 +82,7 @@ loss = FocalDiceLoss(alpha = alpha,gamma = 2.0,eps = 1e-8,num_class = num_class)
 print(loss(input,output))
 ```
 
-###Tversky Loss
+### Tversky Loss
 
 The `tversky_loss` function is used to weight false positive and false negative in the loss.
 
@@ -107,7 +107,7 @@ loss = tversky_loss(alpha = alpha,gamma = 2.0,eps = 1e-8)
 print(loss(input,output))
 ```
 
-###Contrastive Loss
+### Contrastive Loss
 
 The `ContrastiveLoss` function is used in few shot learning paradigm. The inputs of the contrastive loss are two input tensors and target tensor. The target is 0 if they're of different class else it is 1.
 
@@ -131,7 +131,7 @@ loss = ContrastiveLoss(margin = margin,eps = 1e-8,size_average = True)
 print(loss(input1,input2,output))
 ```
 
-###Triplet Loss
+### Triplet Loss
 
 The `TripletLoss` is used in few shot learning paradigm. The inputs of the triplet loss are two tensor of different classes and an anchor tensor. The distance between the anchor and positive, the distance between the anchor and negative is used assign the class for the anchor.
 
