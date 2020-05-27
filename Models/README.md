@@ -212,13 +212,6 @@ Parameters:
 <li>kernel_size(list,default=[]): The size of kernels in each convolutional layer of the UNet.
 <li>strides(list,default=[]): The strides in each convolutional layer of the UNet.
 <li>padding(list,default=[]): The padding in each convolutional block of the UNet.
-<li>in_channels = 1
-<li>out_channels = 1
-<li>init_features = 16
-<li>norm_layer = torch.nn.BatchNorm3d
-<li>kernel_size = [3,3,5,5,5,5,4,4,5,4,1]
-<li>stride = [2,2,2,2,2,2,2,2]
-<li>padding = [1,1]
 </ul>
 
 Usage:
