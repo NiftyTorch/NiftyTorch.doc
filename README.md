@@ -79,7 +79,7 @@ For demos, see [this folder](https://github.com/NiftyTorch/NiftyTorch.v.0.1/tree
 
 NiftyTorch can be installed using:  
 ```python
-pip install niftytorch==0.1.1 --extra-index-url=https://test.pypi.org/simple/
+pip install niftytorch==0.1.1 --extra-index-url=https://pypi.org/simple/
 ```
 If you encounter problem, check dependencies. NiftyTorch requires `torch==1.4.0`, `torchvision==0.5.0` and `optuna==1.4.0`. We also noted in some machines latest Numpy generates error (if so, change to an older version, such as `numpy-1.16.4` using `pip install numpy==1.16.4`). For a complete demo on how to set up the requirement and getting started see **Getting Started** notebook in the [Demo](https://github.com/NiftyTorch/NiftyTorch.v.0.1/tree/master/Demo) folder.
 
