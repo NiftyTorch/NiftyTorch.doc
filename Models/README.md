@@ -33,8 +33,8 @@ strides = [1,2,1,1,1]
 channels = [1,2,2,2,1]
 kernel_size = [3,5,3,3,1]
 padding = [0,1,1,1,1]
-input = torch.random.rand(64,in_channels,initial_feature_map,initial_feature_map,initial_feature_map)
-model = AlexNet(initial_feature_map,num_classes = num_classes,in_channels = in_channels,strides = stirdes,channels,kernel_size = kernel_size,padding = padding,demographic = demographic)
+input = torch.rand(64,in_channels,initial_feature_map,initial_feature_map,initial_feature_map)
+model = AlexNet(initial_feature_map,num_classes = num_classes,in_channels = in_channels,strides = strides,channels = channels,kernel_size = kernel_size,padding = padding,demographic = demographic)
 ```
 
 ### VGGNet
@@ -71,11 +71,10 @@ demographic = ['factor1','factor2']
 cfgs = {'A':[32,32,32,'M',64,64,64]}
 version = 'A'
 in_channels = 1
-features = make_layers(cfgs[version],in_channels = in_channels,batchnorm = False)
 num_classes = 2
 init_weights = True
-input = torch.random.rand(64,in_channels,image_scale,image_scale,image_scale)
-model = VGG(image_scale,cfgs = cfgs,version = version,features = featurs,num_classes = num_classes,init_weights = init_weights,demographic = demographic)
+input = torch.rand(64,in_channels,image_scale,image_scale,image_scale)
+model = VGG(image_scale,cfgs = cfgs,version = version,num_classes = num_classes,init_weights = init_weights,demographic = demographic)
 ```
 
 ### ResNet
@@ -103,8 +102,8 @@ Usage:
 from niftytorch.Models.ResNet import ResNet
 import torch
 import torch.nn as nn
-from niftytorch.Layers.Convolutional_Layers import BottleNeck
-block = BottleNeck
+from niftytorch.Layers.Convolutional_Layers import Bottleneck
+block = Bottleneck
 demographic = ['factor1','factor2']
 layers = [1,2,1,1,2]
 stride = [1,1,1,1,1]
@@ -112,9 +111,9 @@ num_classes = 2
 zero_init_residual = True
 groups = 1
 replace_stride_with_dilation = [2,2,2,2,2]
-norm_layer = nn.Batchnorm
+norm_layer = nn.Batchnorm3d
 in_channels = 1
-input = torch.random.rand(64,in_channels,32,32,32)
+input = torch.rand(64,in_channels,32,32,32)
 model = ResNet(block = block,layers = layers,stride = stride,in_channels = 1,num_classes = num_classes,zero_init_residual = zero_init_residual,groups = groups,replace_stride_with_dilation = replace_stride_with_dilation,norm_layer = norm_layer,demographic = demographic)
 ```
 
@@ -197,7 +196,7 @@ kernel_size = [11, 5, 3, 3, 3]
 strides = [4, 1, 1, 1, 1]
 padding = [0, 2, 1, 1, 1]
 groups = [1, 1, 1, 1, 1]
-AlexNet(image_scale = image_scale,num_classes = num_classes,in_channels = in_channels,channels = channels,kernel_size = kernel_size,strides = strides,padding = padding,groups = groups,demographic = demographic)
+model = AlexNet(image_scale = image_scale,num_classes = num_classes,in_channels = in_channels,channels = channels,kernel_size = kernel_size,strides = strides,padding = padding,groups = groups,demographic = demographic)
 ```
 
 ### U-Net 
@@ -214,13 +213,25 @@ Parameters:
 <li>padding(list,default=[]): The padding in each convolutional block of the UNet.
 </ul>
 
+
+in_channels, out_channels, stride, init_features, bias, kernel_size, padding, groups = 1, norm_layer = None
+
 Usage:
 ```python
+from niftytorch.models.Unet import UNet
+import torch
 in_channels = 1
-out_channels = 1
+out_channels = 3
+stride = [1,1,1,2,2,2,1,1]
 init_features = 16
+bias = [True,True,True,True,False]
+groups = 1
+kernel_size = [3,3,3,5,5,5,5,3,3,3,3]
 norm_layer = torch.nn.BatchNorm3d
 kernel_size = [3,3,5,5,5,5,4,4,5,4,1]
 stride = [2,2,2,2,2,2,2,2]
 padding = [1,1]
+input = torch.rand(64,1,32,32,32)
+model = UNet(in_channels = in_channels,out_channels = out_channels,stride = stride,init_features = init_features,bias = bias,kernel_size = kernel_size,padding = padding,groups = groups,norm_layer = norm_layer)
+output = model(input)
 ```
