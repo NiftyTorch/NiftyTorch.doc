@@ -66,7 +66,7 @@ Usage:
 import torch
 input = torch.ones(64,512,32,32,32)
 from niftytorch.Transformations.Transformations import Rotate_270
-output = Rotate_180(input)
+output = Rotate_270(input)
 ```
 
 ### Random_Segmentation_Crop
