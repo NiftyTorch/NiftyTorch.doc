@@ -20,11 +20,11 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Layers.Convolutional_Layers import Conv3x3
+from niftytorch.Layers.Convolutional_Layers import conv3x3
 import torch
 in_planes = 512
 input = torch.rand(32,in_planes,32,32,32)
-convolution = Conv3x3(in_planes = in_planes,out_planes = 32,stride = 1,groups = 1,dilation = 1,bias = False)
+convolution = conv3x3(in_planes = in_planes,out_planes = 32,stride = 1,groups = 1,dilation = 1,bias = False)
 output = convolution(input)
 ```
 
@@ -43,11 +43,11 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Layers.Convolutional_Layers import Conv1x1
+from niftytorch.Layers.Convolutional_Layers import conv1x1
 import torch
 in_planes = 512
 input = torch.rand(32,in_planes,32,32,32)
-convolution = Conv1x1(in_planes = in_planes,out_planes = 32,stride = 1,groups = 1,bias = False)
+convolution = conv1x1(in_planes = in_planes,out_planes = 32,stride = 1,groups = 1,bias = False)
 output = convolution(input)
 ```
 
@@ -107,7 +107,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Layers.Convolutional_Layers import BottleNeck
+from niftytorch.Layers.Convolutional_Layers import Bottleneck
 import torch
 in_planes = 512
 planes = 256
@@ -138,10 +138,10 @@ Usage:
 ```python
 from niftytorch.Layers.Convolutional_Layers import ShuffleUnit
 import torch
-in_planes = 512
-planes = 256
+in_channels = 512
+out_channels = 256
 input = torch.rand(32,in_planes,32,32,32)
-convolution_block = ShuffleUnit(inplanes = in_planes, planes = planes, groups=5, grouped_conv=True, combine = 'concat',compression_ratio = 4)
+convolution_block = ShuffleUnit(in_channels = in_channels, out_channels = out_channels, groups=5, grouped_conv=True, combine = 'concat',compression_ratio = 4)
 output = convolution_block(input)
 ```
 
