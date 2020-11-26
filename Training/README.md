@@ -93,7 +93,7 @@ Usage:
 import torch
 from niftytorch.Models.ResNet import train_resnet
 from torchvision import transforms
-from NiftyTorch.Layers.Convolutional_Layers import BottleNeck
+from NiftyTorch.Layers.Convolutional_Layers import Bottleneck
 data_transforms = transforms.Compose([transforms.ToTensor()])
 layers = [1,2,1,1,2]
 stride = [1,1,1,1,1]
