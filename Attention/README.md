@@ -23,8 +23,8 @@ Parameters for Constructor:<br>
 Usage:
 
 ```python
-from niftytorch.Attention.Attention import PAM_Module
-PAM = PAM_Module(in_shape = 512,reduction = 8,query_conv_kernel = 3,key_conv_kernel = 3,value_conv_kernel = 3)
+from niftytorch.attention.attention import pam
+PAM = pam(in_shape = 512,reduction = 8,query_conv_kernel = 3,key_conv_kernel = 3,value_conv_kernel = 3)
 t = torch.rand(64,512,32,32)
 out,attention = PAM(t)
 print(out.shape)
@@ -50,8 +50,8 @@ Parameters for Constructor:<br>
 Usage:
 
 ```python
-from niftytorch.Attention.Attention import CAM_Module
-PAM = CAM_Module(512)
+from niftytorch.attention.attention import cam
+PAM = cam(512)
 t = torch.rand(64,512,32,32)
 out,attention = CAM(t)
 print(out.shape)
