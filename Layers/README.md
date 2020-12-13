@@ -20,7 +20,7 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Layers.Convolutional_Layers import conv3x3
+from niftytorch.layers.layers import conv3x3
 import torch
 in_planes = 512
 input = torch.rand(32,in_planes,32,32,32)
@@ -43,7 +43,7 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Layers.Convolutional_Layers import conv1x1
+from niftytorch.layers.layers import conv1x1
 import torch
 in_planes = 512
 input = torch.rand(32,in_planes,32,32,32)
@@ -74,11 +74,11 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Layers.Convolutional_Layers import BasicBlock
+from niftytorch.layers.layers import basicblock
 import torch
 in_planes = 512
 input = torch.rand(32,in_planes,32,32,32)
-convolution_block = BasicBlock(in_planes = in_planes,planes = 256,out_planes = 32,stride = 1,groups = 1,bias = False)
+convolution_block = basicblock(in_planes = in_planes,planes = 256,out_planes = 32,stride = 1,groups = 1,bias = False)
 output = convolution_block(input)
 ```
 
@@ -107,12 +107,12 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Layers.Convolutional_Layers import Bottleneck
+from niftytorch.layers.layers import bottleneck
 import torch
 in_planes = 512
 planes = 256
 input = torch.rand(32,in_planes,32,32,32)
-convolution_block = BottleNeck(inplanes = in_planes, planes = planes, stride=1, downsample=None, groups=1,base_width=64, dilation=1, norm_layer=None,expansion = 1)
+convolution_block = bottleneck(inplanes = in_planes, planes = planes, stride=1, downsample=None, groups=1,base_width=64, dilation=1, norm_layer=None,expansion = 1)
 output = convolution_block(input)
 ```
 
@@ -136,12 +136,12 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Layers.Convolutional_Layers import ShuffleUnit
+from niftytorch.layers.layers import shuffleunit
 import torch
 in_channels = 512
 out_channels = 256
 input = torch.rand(32,in_planes,32,32,32)
-convolution_block = ShuffleUnit(in_channels = in_channels, out_channels = out_channels, groups=5, grouped_conv=True, combine = 'concat',compression_ratio = 4)
+convolution_block = shuffleunit(in_channels = in_channels, out_channels = out_channels, groups=5, grouped_conv=True, combine = 'concat',compression_ratio = 4)
 output = convolution_block(input)
 ```
 
@@ -165,11 +165,11 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Layers.Convolutional_Layers import Fire
+from niftytorch.layers.layers import fire
 import torch
 in_planes = 20
 input = torch.rand(32,20,32,32,32)
-convolution_block = Fire(inplanes = in_planes, squeeze_planes = 3, expand1x1_planes = 12, expand3x3_planes = 12)
+convolution_block = fire(inplanes = in_planes, squeeze_planes = 3, expand1x1_planes = 12, expand3x3_planes = 12)
 output = convolution_block(input)
 ```
 
@@ -181,9 +181,9 @@ This is used in Binary Networks and XNOR Network.<br>
 Usage:
 ```python
 import torch
-from niftytorch.Layers.Convolutional_Layers import BinActive
+from niftytorch.layers.layers import binactive
 input = torch.ones(32,512,32,32,32)
-activation = BinActive()
+activation = binactive()
 output = activation(input)
 ```
 
@@ -205,9 +205,9 @@ Usage:
 
 ```python
 import torch
-from niftytorch.Layers.Convolutional_Layers import BinConv3d
+from niftytorch.layers.layers import binconv3d
 in_channels = 512
 input = torch.ones(32,in_channels,32,32,32)
-activation = BinConv3d(input_channels = in_channels,output_channels = 256,kernel_size = 3,stride = 2,padding = 1,groups = 1,dropout = 0.5,Linear = False)
+activation = binconv3d(input_channels = in_channels,output_channels = 256,kernel_size = 3,stride = 2,padding = 1,groups = 1,dropout = 0.5,Linear = False)
 output = activation(input)
 ```
