@@ -6,31 +6,30 @@ The Loss module consists a collection of loss functions which can be used for le
 
 ### Weighted Cross Entropy
 
-The `weighted_cross_entropy` loss function weights probabilities for each class with weighted assigned by the user and then normalized by total weight.<br>
+The `crossentropyloss` loss function weights probabilities for each class with weighted assigned by the user and then normalized by total weight.<br>
 
 Parameters:
 <ul>
-<li>num_class (int,required): The number of classes in the problem.
 <li>weight (torch.FloatTensor,default = None) : The alpha is the weight to be used as a multiplier for probabilities of each class.
 </ul>
 
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import weighted_cross_entropy
+from niftytorch.Loss.losses import crossentropyloss
 import torch
 import numpy as np
 num_classes = 32
 weight = np.random.rand(num_classes)
 input = torch.random.rand(64,num_classes)
 output = torch.zeroes(64,num_classes)
-loss = weighted_cross_entropy(num_class = num_classes,weight = weight)
+loss = crossentropyloss(weight = weight)
 print(loss(input,output))
 ```
 
 ### Focal Loss
 
-The idea behind `FocalLoss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example. 
+The idea behind `focalloss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example. 
 
 Parameters:
 <ul>
@@ -45,20 +44,20 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import FocalLoss
+from niftytorch.Loss.losses import focalloss
 import torch
 import numpy as np
 num_classes = 32
 alpha = np.random.rand(num_classes)
 input = torch.random.rand(64,num_classes)
 output = torch.zeroes(64,num_classes)
-loss = FocalLoss(num_class = num_classes,alpha = alpha,gamma = 2.0,balance_index = 1,smooth = 0.1,size_average = True)
+loss = focalloss(num_class = num_classes,alpha = alpha,gamma = 2.0,balance_index = 1,smooth = 0.1,size_average = True)
 print(loss(input,output))
 ```
 
 ### Focal Dice Loss
 
-The idea behind `FocalDiceLoss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example by 
+The idea behind `focaldiceloss` is to not only weight the probabilities according to class imbalance, but also take into consideration the difficulty of classifying the example by 
 
 Parameters:
 <ul>
@@ -71,20 +70,20 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import FocalDiceLoss
+from niftytorch.Loss.losses import focaldiceloss
 import torch
 import numpy as np
 num_class = 32
 alpha = torch.random.rand(num_class)
 input = torch.random.rand(64,num_class)
 output = torch.zeroes(64,num_class)
-loss = FocalDiceLoss(alpha = alpha,gamma = 2.0,eps = 1e-8,num_class = num_class)
+loss = focaldiceloss(alpha = alpha,gamma = 2.0,eps = 1e-8,num_class = num_class)
 print(loss(input,output))
 ```
 
 ### Tversky Loss
 
-The `tversky_loss` function is used to weight false positive and false negative in the loss.
+The `tverskyloss` function is used to weight false positive and false negative in the loss.
 
 Parameters:
 <ul>
@@ -96,20 +95,20 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import tversky_loss
+from niftytorch.Loss.losses import tverskyloss
 import torch
 import numpy as np
 num_class = 32
 alpha = torch.random.rand(num_class)
 input = torch.random.rand(64,num_class)
 output = torch.zeroes(64,num_class)
-loss = tversky_loss(alpha = alpha,gamma = 2.0,eps = 1e-8)
+loss = tverskyloss(alpha = alpha,gamma = 2.0,eps = 1e-8)
 print(loss(input,output))
 ```
 
 ### Contrastive Loss
 
-The `ContrastiveLoss` function is used in few shot learning paradigm. The inputs of the contrastive loss are two input tensors and target tensor. The target is 0 if they're of different class else it is 1.
+The `contrastiveloss` function is used in few shot learning paradigm. The inputs of the contrastive loss are two input tensors and target tensor. The target is 0 if they're of different class else it is 1.
 
 Parameters:
 <ul>
@@ -121,19 +120,19 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import ContrastiveLoss
+from niftytorch.Loss.losses import contrastiveloss
 import torch
 margin = 10.0
 input1 = torch.random.rand(64,1024)
 input2 = torch.random.rand(64,1024)
 output = torch.zeroes(64) #assuming they're from different class if you they're from same class use torch.ones(64,num_class)
-loss = ContrastiveLoss(margin = margin,eps = 1e-8,size_average = True)
+loss = contrastiveloss(margin = margin,eps = 1e-8,size_average = True)
 print(loss(input1,input2,output))
 ```
 
 ### Triplet Loss
 
-The `TripletLoss` is used in few shot learning paradigm. The inputs of the triplet loss are two tensor of different classes and an anchor tensor. The distance between the anchor and positive, the distance between the anchor and negative is used assign the class for the anchor.
+The `tripletloss` is used in few shot learning paradigm. The inputs of the triplet loss are two tensor of different classes and an anchor tensor. The distance between the anchor and positive, the distance between the anchor and negative is used assign the class for the anchor.
 
 Parameters:
 <ul>
@@ -144,11 +143,82 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.Losses import TripletLoss
+from niftytorch.Loss.losses import tripletloss
 import torch
 anchor =  torch.random.rand(64,1024) #embedding for anchor
 positive = torch.random.rand(64,1024) #embedding for positive sample
 negative = torch.random.rand(64,1024) #embedding for negative sample
-loss = TripletLoss(margin = margin,size_average = True)
+loss = tripletloss(margin = margin,size_average = True)
 print(loss(anchor,positive,negative))
 ```
+
+### Lovaz softmax loss
+
+Parameters:
+
+<ul>
+<li>per_image (bool,default = True): The parameters tells if the loss has to be calculated for all the parameters.
+<li>ignore (int,default = None): The labels which have value same as ignore is removed.
+<li>classes (list/string,default = 'present'): If the value is equal to 'all' then all classes are considered else if for 'present' the loss is computed for classes present in labels, or a list of classes to average.
+</ul>
+
+Usage:
+
+```python
+from niftytorch.Loss.losses import lovaszsoftmaxloss
+import torch
+batch = 16
+height = 128
+width = 128
+logits =  torch.random.rand(batch,height,width) #logits
+labels = torch.zeros(batch,height,width) #labels
+loss = lovaszsoftmaxloss()
+print(loss(logits,labels))
+```
+
+### Soft N cut Loss
+
+Parameters:
+
+<ul>
+<li>k (int,required): The number of classes.
+<li>input_size (int,required): The height/width of the image.
+</ul>
+
+Usage:
+
+```python
+from niftytorch.Loss.losses import softncutloss
+import torch
+k = 4
+input_size = 128
+batch = 16
+logits =  torch.random.rand(batch,k,input_size,input_size) #logits
+labels = torch.zeros(batch,k,input_size,input_size) #labels
+loss = softncutloss(k = k,input_size = input_size)
+print(loss(logits,labels))
+```
+
+### Soft N cut Loss
+
+Parameters:
+
+<ul>
+<li>k (int,required): The number of classes.
+<li>input_size (int,required): The height/width of the image.
+</ul>
+
+Usage:
+
+```python
+from niftytorch.Loss.losses import softncutloss
+import torch
+k = 4
+input_size = 128
+batch = 16
+logits =  torch.random.rand(batch,k,input_size,input_size) #logits
+labels = torch.zeros(batch,k,input_size,input_size) #labels
+loss = softncutloss(k = k,input_size = input_size)
+print(loss(logits,labels))
+```
+
