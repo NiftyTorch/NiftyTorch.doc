@@ -16,7 +16,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import crossentropyloss
+from niftytorch.loss.losses import crossentropyloss
 import torch
 import numpy as np
 num_classes = 32
@@ -44,7 +44,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import focalloss
+from niftytorch.loss.losses import focalloss
 import torch
 import numpy as np
 num_classes = 32
@@ -70,7 +70,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import focaldiceloss
+from niftytorch.loss.losses import focaldiceloss
 import torch
 import numpy as np
 num_class = 32
@@ -95,7 +95,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import tverskyloss
+from niftytorch.loss.losses import tverskyloss
 import torch
 import numpy as np
 num_class = 32
@@ -120,7 +120,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import contrastiveloss
+from niftytorch.loss.losses import contrastiveloss
 import torch
 margin = 10.0
 input1 = torch.random.rand(64,1024)
@@ -143,7 +143,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import tripletloss
+from niftytorch.loss.losses import tripletloss
 import torch
 anchor =  torch.random.rand(64,1024) #embedding for anchor
 positive = torch.random.rand(64,1024) #embedding for positive sample
@@ -165,7 +165,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import lovaszsoftmaxloss
+from niftytorch.loss.losses import lovaszsoftmaxloss
 import torch
 batch = 16
 height = 128
@@ -188,7 +188,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import softncutloss
+from niftytorch.loss.losses import softncutloss
 import torch
 k = 4
 input_size = 128
@@ -211,7 +211,7 @@ Parameters:
 Usage:
 
 ```python
-from niftytorch.Loss.losses import softncutloss
+from niftytorch.loss.losses import softncutloss
 import torch
 k = 4
 input_size = 128
@@ -221,4 +221,47 @@ labels = torch.zeros(batch,k,input_size,input_size) #labels
 loss = softncutloss(k = k,input_size = input_size)
 print(loss(logits,labels))
 ```
+
+### TotalVariation
+
+Parameters:
+
+<ul>
+  <li>tv_weight (torch.FloatTensor,required): the weight to be given in each dimension.
+</ul>
+
+Usage:
+
+```python
+from niftytorch.loss.losses import totalvariation
+import torch
+tv_weight = torch.FloatTensor([0.2,0.3,0.4])
+logits =  torch.random.rand(batch,k,input_size,input_size) #logits
+labels = torch.zeros(batch,k,input_size,input_size) #labels
+loss = totalvariation(tv_weight = tv_weight)
+print(loss(logits,labels))
+```
+
+### PSNR
+
+Parameters:
+
+<ul>
+  <li>max_val (Float,required): the signal value.
+</ul>
+
+Usage:
+
+```python
+from niftytorch.loss.losses import PSNR
+import torch
+max_val = 11.2
+batch = 16
+logits =  torch.random.rand(batch,10) #logits
+values = torch.zeros(batch,10) #labels
+loss = PSNR(max_val = max_val)
+print(loss(logits,labels))
+```
+
+### JacobianReg
 
