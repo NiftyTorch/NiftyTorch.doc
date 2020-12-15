@@ -263,5 +263,136 @@ loss = PSNR(max_val = max_val)
 print(loss(logits,labels))
 ```
 
-### JacobianReg
+### Large-Margin Softmax Loss
 
+Parameters:
+
+<ul>
+  <li>input_dim: The size of features.
+  <li>num_classes: The number of classes in classifier
+  <li>margin: The margin size
+<ul>
+
+
+Usage:
+
+```python
+from niftytorch.loss.losses import lsoftmax
+import torch
+batch = 16
+input_dim = 128
+num_classes = 2
+margin = 2
+features =  torch.random.rand(batch,input_dim) #logits
+values = torch.zeros(batch,num_classes) #labels
+loss = lsoftmax(input_dim = input_dim,num_classes = num_classes,margin = 2)
+print(loss(logits,labels))
+```
+
+### Additive Margin Softmax
+
+Parameters:
+
+<ul>
+  <li>in_feats (int,required): The size of features.
+  <li>num_class (int,default = 10): The number of classes in classifier.
+  <li>gamma (float,default = 0.3): The margin size.
+  <li>it (float,default = 0): 
+  <li>lambdamin = 5.0
+  <li>lambdamax = 1500
+  <li>lamb = 1500
+  <li>device (string,default = 'cuda:2'): The device where gpu is present.
+<ul>
+
+
+Usage:
+
+```python
+from niftytorch.loss.losses import amsoftmax
+import torch
+batch = 16
+infeat = 128
+num_class = 2
+device = 'cuda:1'
+gamma = 0
+features =  torch.random.rand(batch,input_dim) #logits
+values = torch.zeros(batch,num_classes) #labels
+loss = amsoftmax(in_feats = in_feats,num_classes = num_classes,m = 2,s = 2,device = 'cuda:2')
+print(loss(logits,labels))
+```
+
+### Angular Softmax Loss
+
+Parameters:
+
+<ul>
+  <li>l2_reg (float,default = 0.02): The l2 loss coefficient.
+  <li>angle (int,default = 50): The angle between positives and negatives.
+  <li>lambda_ang (float,default = ): The angle hyperparameter.
+<ul>
+
+
+Usage:
+
+```python
+from niftytorch.loss.losses import angularloss
+import torch
+batch = 16
+l2_reg = 1e-4
+angle = 20
+lambda_ang = 2.5
+features =  torch.random.rand(batch,128) #logits
+values = torch.zeros(batch,2) #labels
+loss = amsoftmax(l2_reg=l2_reg, angle = angle, lambda_ang = lambda_ang)
+print(loss(logits,labels))
+```
+
+### Circle Loss
+
+Parameters:
+
+<ul>
+  <li>m (float,default = 0.02): The margin.
+  <li>gamma (int,default = 50): The scaling factor.
+  <li>
+<ul>
+
+
+Usage:
+
+```python
+from niftytorch.loss.losses import circleloss
+import torch
+batch = 16
+m = 2
+gammma = 2
+features =  torch.random.rand(batch,128) #logits
+values = torch.zeros(batch,2) #labels
+loss = circleloss(m = m,gamma = gamma)
+print(loss(logits,labels))
+```
+
+### Fast AP Loss
+
+Parameters:
+
+<ul>
+  <li>bin_size (int,required): The margin.
+  <li>start_bin (float,required): The start bin value.
+  <li>end_bin (float,required): The end bin value.
+<ul>
+
+
+Usage:
+```python
+from niftytorch.loss.losses import fastaploss
+import torch
+batch = 16
+bin_size = 16 
+start_bin = 0
+end_bin = 4
+features =  torch.random.rand(batch,128) #logits
+values = torch.zeros(batch,2) #labels
+loss = fastaploss(bin_size = bin_size,start_bin = start_bin,end_bin = end_bin)
+print(loss(logits,labels))
+```
