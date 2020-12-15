@@ -271,7 +271,7 @@ Parameters:
   <li>input_dim: The size of features.
   <li>num_classes: The number of classes in classifier
   <li>margin: The margin size
-<ul>
+</ul>
 
 
 Usage:
