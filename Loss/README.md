@@ -302,7 +302,7 @@ Parameters:
   <li>lambdamax = 1500
   <li>lamb = 1500
   <li>device (string,default = 'cuda:2'): The device where gpu is present.
-<ul>
+</ul>
 
 
 Usage:
@@ -329,7 +329,7 @@ Parameters:
   <li>l2_reg (float,default = 0.02): The l2 loss coefficient.
   <li>angle (int,default = 50): The angle between positives and negatives.
   <li>lambda_ang (float,default = ): The angle hyperparameter.
-<ul>
+</ul>
 
 
 Usage:
@@ -355,7 +355,7 @@ Parameters:
   <li>m (float,default = 0.02): The margin.
   <li>gamma (int,default = 50): The scaling factor.
   <li>
-<ul>
+</ul>
 
 
 Usage:
@@ -380,7 +380,7 @@ Parameters:
   <li>bin_size (int,required): The margin.
   <li>start_bin (float,required): The start bin value.
   <li>end_bin (float,required): The end bin value.
-<ul>
+</ul>
 
 
 Usage:
