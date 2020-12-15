@@ -258,7 +258,7 @@ import torch
 max_val = 11.2
 batch = 16
 logits =  torch.random.rand(batch,10) #logits
-values = torch.zeros(batch,10) #labels
+labels = torch.zeros(batch,10) #labels
 loss = PSNR(max_val = max_val)
 print(loss(logits,labels))
 ```
@@ -284,9 +284,9 @@ input_dim = 128
 num_classes = 2
 margin = 2
 features =  torch.random.rand(batch,input_dim) #logits
-values = torch.zeros(batch,num_classes) #labels
+labels = torch.zeros(batch,num_classes) #labels
 loss = lsoftmax(input_dim = input_dim,num_classes = num_classes,margin = 2)
-print(loss(logits,labels))
+print(loss(features,labels))
 ```
 
 ### Additive Margin Softmax
@@ -316,19 +316,19 @@ num_class = 2
 device = 'cuda:1'
 gamma = 0
 features =  torch.random.rand(batch,input_dim) #logits
-values = torch.zeros(batch,num_classes) #labels
+labels = torch.zeros(batch,num_classes) #labels
 loss = amsoftmax(in_feats = in_feats,num_classes = num_classes,m = 2,s = 2,device = 'cuda:2')
 print(loss(logits,labels))
 ```
 
-### Angular Softmax Loss
+### Angular Loss
 
 Parameters:
 
 <ul>
   <li>l2_reg (float,default = 0.02): The l2 loss coefficient.
   <li>angle (int,default = 50): The angle between positives and negatives.
-  <li>lambda_ang (float,default = ): The angle hyperparameter.
+  <li>lambda_ang (float,default = 0.02): The angle hyperparameter.
 </ul>
 
 
@@ -341,10 +341,12 @@ batch = 16
 l2_reg = 1e-4
 angle = 20
 lambda_ang = 2.5
-features =  torch.random.rand(batch,128) #logits
-values = torch.zeros(batch,2) #labels
-loss = amsoftmax(l2_reg=l2_reg, angle = angle, lambda_ang = lambda_ang)
-print(loss(logits,labels))
+negative_examples = 4
+positive =  torch.random.rand(batch,128)
+anchor =  torch.random.rand(batch,128)
+negative =  torch.random.rand(batch,negative_examples,128)
+loss = angularloss(l2_reg=l2_reg, angle = angle, lambda_ang = lambda_ang)
+print(loss(positive,anchor,negative))
 ```
 
 ### Circle Loss
@@ -366,10 +368,10 @@ import torch
 batch = 16
 m = 2
 gammma = 2
-features =  torch.random.rand(batch,128) #logits
-values = torch.zeros(batch,2) #labels
+positive =  torch.random.rand(batch,128) #logits
+negative = torch.zeros(batch,128) #labels
 loss = circleloss(m = m,gamma = gamma)
-print(loss(logits,labels))
+print(loss(positive,negative))
 ```
 
 ### Fast AP Loss
@@ -391,8 +393,52 @@ batch = 16
 bin_size = 16 
 start_bin = 0
 end_bin = 4
-features =  torch.random.rand(batch,128) #logits
-values = torch.zeros(batch,2) #labels
+num_classes = 2
+output =  torch.random.rand(batch,128)
+pos_output = torch.zeros(batch,128)
+neg_output = torch.zeros(batch,128)
+labels = torch.zeros(batch,num_classes)
 loss = fastaploss(bin_size = bin_size,start_bin = start_bin,end_bin = end_bin)
-print(loss(logits,labels))
+print(loss(output,pos_output,neg_output,labels))
+```
+
+
+
+### Lifted Loss
+
+Parameters:
+
+<ul>
+  <li>margin (int,default = 1): The margin.
+</ul>
+
+
+Usage:
+```python
+from niftytorch.loss.losses import liftedloss
+import torch
+batch = 16
+margin = 1
+features =  torch.random.rand(batch,128)
+labels = torch.zeros(batch,num_classes)
+loss = liftedloss(margin = margin)
+print(loss(features,labels))
+```
+
+### Proxy Anchor
+
+Parameters:
+
+<ul>
+<li>nb_classes: The number of classes
+<li>device: The device in which classifier should be stored
+<li>sz_embed: The sz_embed embedding size of the input tensor
+<li>mrg (float,default = 0.1): 
+<li>alpha (int,default = 32): 
+</ul>
+
+Usage:
+
+```python
+
 ```
