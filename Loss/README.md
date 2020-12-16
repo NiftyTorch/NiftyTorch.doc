@@ -433,13 +433,50 @@ Parameters:
 <li>nb_classes: The number of classes
 <li>device: The device in which classifier should be stored
 <li>sz_embed: The sz_embed embedding size of the input tensor
-<li>mrg (float,default = 0.1): 
-<li>alpha (int,default = 32): 
+<li>mrg (float,default = 0.1): the margin
+<li>alpha (int,default = 32): the scaling factor
 </ul>
 
 Usage:
 
 ```python
+from niftytorch.loss.losses import proxyanchor
+import torch
+batch = 16
+nb_classes = 2
+device = 'cuda:2'
+sz_embed = 128
+mrg = 0.1
+alpha = 32
+features =  torch.random.rand(batch,128)
+labels = torch.zeros(batch,num_classes)
+loss = proxyanchor(nb_classes = nb_classes,device = device,sz_embed = sz_embed,mrg = mrg,alpha = alpha)
+print(loss(features,labels))
+```
+
+### Proxy NCA
 
 
+<ul>
+<li>nb_classes: The number of classes
+<li>sz_embedding: The embedding size
+<li>infeat (int, required): The size of the input features
+<li>device (string, default = 'cuda:0'): The device in which the embedder is to be placed
+<li>smoothing_const (float, default = 0.1): The smoothening constant
+<li>scaling_x (int, default = 1): The scaling factor for norm of proxies
+<li>scaling_p (int,default = 3): The scaling factor for norm of input features.
+</ul>
+
+```python
+from niftytorch.loss.losses import proxynca
+import torch
+batch = 16
+nb_classes = 2
+device = 'cuda:2'
+sz_embedding = 128
+infeat = 128
+features =  torch.random.rand(batch,infeat)
+labels = torch.zeros(batch,num_classes)
+loss = proxyanchor(nb_classes = nb_classes,device = device,sz_embedding = sz_embedding,infeat = infeat)
+print(loss(features,labels))
 ```
