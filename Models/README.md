@@ -23,7 +23,7 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Models.AlexNet import AlexNet
+from niftytorch.models.alexnet import alexnet
 import torch
 initial_feature_map = 128
 num_classes = 2
@@ -34,7 +34,7 @@ channels = [1,2,2,2,1]
 kernel_size = [3,5,3,3,1]
 padding = [0,1,1,1,1]
 input = torch.rand(64,in_channels,initial_feature_map,initial_feature_map,initial_feature_map)
-model = AlexNet(initial_feature_map,num_classes = num_classes,in_channels = in_channels,strides = strides,channels = channels,kernel_size = kernel_size,padding = padding,demographic = demographic)
+model = alexnet(initial_feature_map,num_classes = num_classes,in_channels = in_channels,strides = strides,channels = channels,kernel_size = kernel_size,padding = padding,demographic = demographic)
 ```
 
 ### VGGNet
@@ -63,8 +63,7 @@ Parameters for make_layers:
 
 Usage:
 ```python
-from niftytorch.Models.VGG_Net import VGG
-from niftytorch.Models.VGG_Net import make_layers
+from niftytorch.models.vggnet import vggnet
 import torch
 image_scale = 128
 demographic = ['factor1','factor2']
@@ -74,7 +73,7 @@ in_channels = 1
 num_classes = 2
 init_weights = True
 input = torch.rand(64,in_channels,image_scale,image_scale,image_scale)
-model = VGG(image_scale,cfgs = cfgs,version = version,num_classes = num_classes,init_weights = init_weights,demographic = demographic)
+model = vggnet(image_scale,cfgs = cfgs,version = version,num_classes = num_classes,init_weights = init_weights,demographic = demographic)
 ```
 
 ### ResNet
@@ -99,11 +98,11 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Models.ResNet import ResNet
+from niftytorch.models.resnet import resnet
 import torch
 import torch.nn as nn
-from niftytorch.Layers.Convolutional_Layers import Bottleneck
-block = Bottleneck
+from niftytorch.layers.layers import bottleneck
+block = bottleneck
 demographic = ['factor1','factor2']
 layers = [1,2,1,1,2]
 stride = [1,1,1,1,1]
@@ -114,7 +113,7 @@ replace_stride_with_dilation = [2,2,2,2,2]
 norm_layer = nn.Batchnorm3d
 in_channels = 1
 input = torch.rand(64,in_channels,32,32,32)
-model = ResNet(block = block,layers = layers,stride = stride,in_channels = 1,num_classes = num_classes,zero_init_residual = zero_init_residual,groups = groups,replace_stride_with_dilation = replace_stride_with_dilation,norm_layer = norm_layer,demographic = demographic)
+model = resnet(block = block,layers = layers,stride = stride,in_channels = 1,num_classes = num_classes,zero_init_residual = zero_init_residual,groups = groups,replace_stride_with_dilation = replace_stride_with_dilation,norm_layer = norm_layer,demographic = demographic)
 ```
 
 ### ShuffleNet
@@ -133,7 +132,7 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Models.ShuffleNet import ShuffleNet
+from niftytorch.models.shufflenet import shufflenet
 import torch
 import torch.nn as nn
 stage_repeats  = [3,7,3]
@@ -141,7 +140,7 @@ groups = 5
 num_classes = 2
 demographic = ['factor1','factor2']
 in_channels = 1
-model = ShuffleNet(stage_repeats = stage_repeats,groups = groups,in_channels = 1,num_classes = num_classes,demographic = demographic)
+model = shufflenet(stage_repeats = stage_repeats,groups = groups,in_channels = 1,num_classes = num_classes,demographic = demographic)
 ```
 
 ### SqueezeNet
@@ -158,13 +157,13 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Models.SqueezeNet import SqueezeNet
+from niftytorch.models.squeeznet import squeezenet
 import torch
 import torch.nn as nn
 version  = '1_1'
 num_classes = 2
 in_channels = 1
-model = SqueezeNet(version = version,num_classes = 2,in_channels = 1)
+model = squeezenet(version = version,num_classes = 2,in_channels = 1)
 ```
 
 ### XNOR-Net
@@ -186,7 +185,7 @@ Parameters:
 
 Usage:
 ```python
-from niftytorch.Models.XNOR_NET import AlexNet
+from niftytorch.models.xnornet import alexnet
 image_scale = 128
 num_classes = 2
 in_channels = 1
@@ -196,7 +195,7 @@ kernel_size = [11, 5, 3, 3, 3]
 strides = [4, 1, 1, 1, 1]
 padding = [0, 2, 1, 1, 1]
 groups = [1, 1, 1, 1, 1]
-model = AlexNet(image_scale = image_scale,num_classes = num_classes,in_channels = in_channels,channels = channels,kernel_size = kernel_size,strides = strides,padding = padding,groups = groups,demographic = demographic)
+model = alexnet(image_scale = image_scale,num_classes = num_classes,in_channels = in_channels,channels = channels,kernel_size = kernel_size,strides = strides,padding = padding,groups = groups,demographic = demographic)
 ```
 
 ### U-Net 
