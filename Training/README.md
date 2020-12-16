@@ -23,6 +23,7 @@ Parameters:
 <li>optimizer (torch.optim,default = optim.Adam): The optimizer which is used for updating weights.<br>
 <li>device_ids (list,default = []): The list of GPUs to be considered for data parallelization.<br>
 <li>l2 (float,default = 0): The l2 regularization coefficient.<br>
+<li>experiment_name (string,default = None): The entire path to the tensorboard directory.<br>
 </ul>
 
 ## Modules 
@@ -41,7 +42,7 @@ Usage:
 
 ```python
 import torch
-from niftytorch.Models.AlexNet import train_alexnet
+from niftytorch.models.alexnet import train_alexnet
 from torchvision import transforms
 
 data_transforms = transforms.Compose([transforms.ToTensor()])
@@ -65,7 +66,7 @@ Usage:
 
 ```python
 import torch
-from niftytorch.Models.VGG_Net import train_vggnet
+from niftytorch.models.vggnet import train_vggnet
 from torchvision import transforms
 
 data_transforms = transforms.Compose([transforms.ToTensor()])
@@ -91,9 +92,9 @@ Parameters:
 Usage:
 ```python
 import torch
-from niftytorch.Models.ResNet import train_resnet
+from niftytorch.models.resnet import train_resnet
 from torchvision import transforms
-from NiftyTorch.Layers.Convolutional_Layers import Bottleneck
+from NiftyTorch.layers.layers import bottleneck
 data_transforms = transforms.Compose([transforms.ToTensor()])
 layers = [1,2,1,1,2]
 stride = [1,1,1,1,1]
@@ -116,7 +117,7 @@ Parameters:
 Usage:
 ```python
 import torch
-from niftytorch.Models.ShuffleNet import train_shufflenet
+from niftytorch.models.shufflenet import train_shufflenet
 from torchvision import transforms
 data_transforms = transforms.Compose([transforms.ToTensor()])
 groups = 2
@@ -138,7 +139,7 @@ Parameters:
 Usage:
 ```python
 import torch
-from niftytorch.Models.SqueezeNet import train_squeezenet
+from niftytorch.models.squeezeNet import train_squeezenet
 from torchvision import transforms
 data_transforms = transforms.Compose([transforms.ToTensor()])
 version = '1_1'
@@ -163,7 +164,7 @@ Parameters:
 Usage:
 ```python
 import torch
-from niftytorch.Models.XNOR_NET import train_xnornet
+from niftytorch.models.xnornet import train_xnornet
 from torchvision import transforms
 data_transforms = transforms.Compose([transforms.ToTensor()])
 version = '1_1'
